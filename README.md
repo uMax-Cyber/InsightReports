@@ -13,6 +13,13 @@
 ![Demo](screenshots/demo.svg)
 HTML report generator with dark theme, inline SVG animations, and embedded problem visualizations. Each problem gets a "before/after" animation pair — plays in any browser, no external files needed.
 
+## ✨ Features
+
+- **Self-contained reports** — a single HTML file with all SVG animations inline, no external assets
+- **Before/after storytelling** — every problem ships with an animated visualization of the broken state and the fixed state
+- **Dark design system** — GitHub-style palette tuned for readability and status colors
+- **Zero dependencies** — pure HTML + CSS + SMIL, opens in any modern browser
+
 ## Design System
 
 - **Palette**: bg `#0d1117`, panels `#161b22`, borders `#30363d`, text `#e6edf3`
