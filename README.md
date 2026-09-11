@@ -1,6 +1,10 @@
+[English](README.md) | [Русский](README.ru.md)
+
 # Animated Dark-Theme Report Template
 [![CI](https://github.com/uMax-Cyber/InsightReports/actions/workflows/ci.yml/badge.svg)](https://github.com/uMax-Cyber/InsightReports/actions/workflows/ci.yml)
 
+
+![Demo](screenshots/demo.svg)
 HTML report generator with dark theme, inline SVG animations, and embedded problem visualizations. Each problem gets a "before/after" animation pair — plays in any browser, no external files needed.
 
 ## Design System
