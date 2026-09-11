@@ -11,31 +11,31 @@
 
 
 ![Namoyish](screenshots/demo.svg)
-Qorongʻu tema, inline SVG animatsiyalar va muammolarning ichki vizualizatsiyalari bilan HTML hisobot generatori. Har bir muammo «oldin/keyin» animatsiya juftligini oladi — istalgan brauzerda ishlaydi, tashqi fayllar kerak emas.
+HTML hisobot generatori: qorongʻu tema, inline SVG animatsiyalar va har bir muammoning oʻz vizualizatsiyasi. Har bir muammo «oldin/keyin» juftligida koʻrsatiladi — hisobot har qanday brauzerda ochiladi va hech qanday tashqi fayl talab qilmaydi.
 
 ## ✨ Imkoniyatlar
 
-- **Oʻz-oʻzidan toʻliq hisobotlar** — bitta HTML fayl, barcha SVG animatsiyalar inline, tashqi resurslarsiz
-- **«Oldin/keyin» hikoyasi** — har bir muammo uchun buzilgan va tuzatilgan holatning animatsion vizualizatsiyasi tayyor
-- **Qorongʻu dizayn tizimi** — oʻqilishi va status ranglari uchun sozlangan GitHub uslubidagi palitra
-- **Nol bogʻliqlik** — sof HTML + CSS + SMIL, zamonaviy brauzerlarning barchasida ochiladi
+- **Hammasi bitta faylda** — barcha SVG animatsiyalar HTML ichiga joylangan, tashqi resurs kerak emas
+- **«Oldin/keyin» uslubi** — har bir muammo uchun buzilgan hamda tuzatilgan holatning animatsiyasi tayyor turadi
+- **Qorongʻu dizayn tizimi** — oʻqishga qulay, GitHub uslubidagi palitra va status ranglari
+- **Tashqi kutubxonasiz** — sof HTML + CSS + SMIL, zamonaviy brauzerda bemalol ochiladi
 
 ## Dizayn tizimi
 
 - **Palitra**: fon `#0d1117`, panellar `#161b22`, chegaralar `#30363d`, matn `#e6edf3`
-- **Urgʻular**: koʻk `#58a6ff` (maʼlumot), qizil `#f85149` (muammo), yashil `#3fb950` (tuzatish), sariq `#d29922` (ogohlantirish)
-- **Shriftlar**: tizimli toʻplam (Segoe UI / -apple-system / sans-serif)
+- **Urgʻu ranglar**: koʻk `#58a6ff` (maʼlumot), qizil `#f85149` (muammo), yashil `#3fb950` (tuzatish), sariq `#d29922` (ogohlantirish)
+- **Shriftlar**: tizim shriftlari (Segoe UI / -apple-system / sans-serif)
 
 ## Animatsiya turlari (barchasi — SMIL bilan inline SVG)
 
-| Animatsiya | CSS/SMIL | Qoʻllanilishi |
+| Animatsiya | CSS/SMIL | Qoʻllanilish holati |
 |-----------|----------|----------|
-| fadeUp | `@keyframes` | Kartochkalarning paydo boʻlishi |
-| grow | `@keyframes` | Progress-panelning toʻldirilishi |
-| pulse | `@keyframes` | Kritik ogohlantirishlarga eʼtibor jalb qilish |
-| packet-flow | `<animate x>` | Tarmoq paketlarining harakati |
-| counter | `<animate>` + JS (ixtiyoriy) | Raqamlarning oshib borishi |
-| pool-grid | bosqichma-bosqich `<animate opacity>` | Status panjaralarining toʻldirilishi |
+| fadeUp | `@keyframes` | Kartochkalar paydo boʻladi |
+| grow | `@keyframes` | Progress barlar toʻladi |
+| pulse | `@keyframes` | Kritik ogohlantirish diqqatni tortadi |
+| packet-flow | `<animate x>` | Tarmoq paketlari harakatlanadi |
+| counter | `<animate>` + JS (ixtiyoriy) | Raqamlar hisoblanib boradi |
+| pool-grid | bosqichma-bosqich `<animate opacity>` | Status panjarasi kataklari ketma-ket yonadi |
 
 ## Tuzilma
 
@@ -53,21 +53,20 @@ Report
 └── Action plan (numbered steps)
 ```
 
-## Misol: DHCP pul tugashi (inline SVG)
+## Misol: DHCP pool tugashi (inline SVG)
 
-Vizualizada koʻrsatiladi:
-- Mijoz 📱 serverga DISCOVER paketlarini yuboradi
-- Server 😕 (qizil) pul toʻlganda ularni eʼtiborsiz qoldiradi
-- Pul panjarasi: 38/40 kvadrat qizil (bosqichma-bosqich shaffoflik animatsiyasi)
-- Tuzatilgandan soʻng: server 😀 (yashil), OFFER paketlari qaytadi, pul 15/40
+Vizualizatsiya quyidagilarni koʻrsatadi:
+- Mijoz 📱 server tomon DISCOVER paketlarini yuboradi
+- IP manzillar qolmagach, server 😕 (qizil) ularni javobsiz qoldiradi
+- Pool panjarasi: 38/40 katak qizil (kataklar ketma-ket yonadi)
+- Tuzatilgandan keyin: server 😀 (yashil), OFFER paketlari qaytadi, poolda 15/40 band
 
 ## Foydalanish
 
 ```bash
-# Shablonni nusxalab, mazmunini almashtiring
+# Shablonni nusxalab, mazmunini oʻz maʼlumotlaringizga moslang
 cp templates/report_dark_20260909.html my-report.html
-# Boʻlimlarni oʻz maʼlumotlaringizga moslab tahrirlang
-# Brauzerda oching — animatsiyalar avtomatik ishga tushadi
+# Brauzerda oching — animatsiyalar oʻzi ishga tushadi
 ```
 
 ## Litsenziya
@@ -75,7 +74,7 @@ MIT
 
 ## 📬 Aloqa
 
-Savollaringiz bormi? Yozing: **[allumaxmail@gmail.com](mailto:allumaxmail@gmail.com)**
+Savollaringiz boʻlsa yozing: **[allumaxmail@gmail.com](mailto:allumaxmail@gmail.com)**
 
 ---
 
