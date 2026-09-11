@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Диагностика Wi-Fi — Отчёт</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 24px; background: #0d1117; color: #e6edf3; }
+  .page { max-width: 900px; margin: 0 auto; background: #161b22; border-radius: 16px; padding: 32px 40px; box-shadow: 0 2px 16px rgba(0,0,0,.4); border: 1px solid #30363d; }
+  h1 { color: #58a6ff; border-bottom: 2px solid #1f6feb; padding-bottom: 12px; }
+  h2 { color: #79c0ff; margin-top: 32px; }
+  .card { border-left: 5px solid #444c56; padding: 14px 18px; margin: 16px 0; border-radius: 8px; background: #0d1117; }
+  .red { border-color: #f85149; background: #2d1416; }
+  .green { border-color: #3fb950; background: #12261e; }
+  .yellow { border-color: #d29922; background: #241d0f; }
+  .blue { border-color: #58a6ff; background: #101a28; }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+  th { background: #1f6feb; color: #fff; padding: 10px 12px; text-align: left; }
+  td { border-bottom: 1px solid #30363d; padding: 9px 12px; }
+  tr:nth-child(even) { background: #1c2129; }
+  .muted { color: #8b949e; font-size: 13px; }
+  .verdict { background: linear-gradient(135deg, #1f2937, #1f3a5f); color: #e6edf3; padding: 20px 24px; border-radius: 12px; margin: 20px 0; border: 1px solid #1f6feb; }
+  .verdict h2 { color: #58a6ff; margin-top: 0; }
+  /* === АНИМАЦИИ === */
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(248,81,73,.5); } 50% { box-shadow: 0 0 0 10px rgba(248,81,73,0); } }
+  @keyframes grow { from { width: 0; } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  @keyframes glow { 0%,100% { border-color: #1f6feb; } 50% { border-color: #58a6ff; } }
+  .pulse { animation: pulse 2s infinite; }
+  .fadeup { animation: fadeUp .7s ease both; }
+  .fadeup:nth-child(2) { animation-delay: .15s; } .fadeup:nth-child(3) { animation-delay: .3s; }
+  .statgrid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 14px; margin: 20px 0; }
+  .stat { background: #0d1117; border: 1px solid #30363d; border-radius: 12px; padding: 18px; text-align: center; animation: glow 3s infinite; }
+  .stat .num { font-size: 34px; font-weight: 800; color: #58a6ff; }
+  .stat .lbl { color: #8b949e; font-size: 13px; margin-top: 6px; }
+  .bar-wrap { background: #21262d; border-radius: 6px; height: 26px; overflow: hidden; margin: 8px 0 14px; }
+  .bar { height: 100%; background: linear-gradient(90deg,#1f6feb,#58a6ff); border-radius: 6px; animation: grow 1.4s ease both; display:flex; align-items:center; justify-content:flex-end; padding-right:8px; color:#fff; font-size:12px; font-weight:600; }
+  .bar.red { background: linear-gradient(90deg,#b62324,#f85149); }
+  .bar.orange { background: linear-gradient(90deg,#9e6a03,#d29922); }
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>📡 Диагностика Wi-Fi: «тормозит интернет» и «...connecting»</h1>
+<p class="muted">Школа WIST · 9 сентября 2026 · Всё проверено по реальным данным из логов и замеров — без гаданий. В сети ничего не менялось.</p>
+
+<div class="verdict">
+<h2>Если коротко — тремя фразами:</h2>
+<p>1️⃣ <b>Интернет «тормозит», потому что весь Wi-Fi школы работает на одной забитой полосе</b> — как сто машин в одной полосе на трассе.</p>
+<p>2️⃣ <b>Вечное «подключение...» — это ОДНО устройство</b> (компьютер «ADMISSION»): у него «паспорт» от другой сети, и сервер его из-за этого молча не пускает.</p>
+<p>3️⃣ <b>5 ГГц включать пока нельзя</b> — серверы-шлюзы, через которые идёт ВЕСЬ интернет (и кабельный тоже), работают на пределе памяти. Включим 5 ГГц — через 1-3 дня всё упадёт снова.</p>
+</div>
+
+<div class="statgrid">
+  <div class="stat fadeup"><div class="num">10 615</div><div class="lbl">заминок в Wi-Fi за день</div></div>
+  <div class="stat fadeup"><div class="num">12.6 ч</div><div class="lbl">устройство без адреса (в лупе)</div></div>
+  <div class="stat fadeup"><div class="num">274 МБ</div><div class="lbl">свободной памяти у сервера шлюзов</div></div>
+  <div class="stat fadeup"><div class="num">91%</div><div class="lbl">памяти занято шлюзом GW1</div></div>
+</div>
+<div class="card blue">
+<b>Аномалии за день — по типам:</b>
+<div class="bar-wrap"><div class="bar red" style="width:100%">DNS не отвечает — 5 335 (50%)</div></div>
+<div class="bar-wrap"><div class="bar orange" style="width:68%">Пакеты идут медленно — 3 650 (34%)</div></div>
+<div class="bar-wrap"><div class="bar" style="width:21%">Адрес не получен — 1 139 (11%)</div></div>
+</div>
+<div class="card red pulse">
+<b>🔴 Живая находка:</b> устройство ADMISSION стучалось в сеть каждые 5 минут 12 часов подряд — сервер молчал (паспорт от чужой сети).
+</div>
+
+<h2>✅ Что мы проверили — и это в порядке</h2>
+<div class="card green">
+<p>✅ <b>Раздатчик адресов (DHCP)</b> — работает. Проверено вживую: устройство просит адрес → получает за доли секунды.</p>
+<p>✅ <b>Настройки сетей (VLAN)</b> — везде правильно: Admin и E-Block подключены к своим каналам.</p>
+<p>✅ <b>Пул адресов</b> — огромный (1000 адресов), не переполнен.</p>
+<p>✅ <b>Конфликтов адресов</b> — нет (0 отказов DHCP за сутки).</p>
+<p>✅ <b>Wi-Fi пароли/шифрование</b> — настроены корректно.</p>
+</div>
+
+<h2>🚨 Проблема №1: «Тормозит интернет»</h2>
+<div class="card red">
+<p><b>Что происходит:</b> весь Wi-Fi школы (~500 устройств) работает только на частоте 2.4 ГГц. Там всего <b>3 канала</b> — как три полосы на трассе. 96 точек доступа + сотни телефонов делят эти три полосы.</p>
+<p><b>Цифры за день:</b> 10 615 заминок — половина «DNS не отвечает», треть «пакеты идут медленно».</p>
+<p><b>Почему нельзя просто включить 5 ГГц:</b> стены — бетон с арматурой (5 ГГц сквозь них почти не проходит), и главное — <b>когда его включали, вся сеть падала через 1-3 дня, даже кабельная</b>. Причину нашли (Проблема №3).</p>
+</div>
+
+<h2>🚨 Проблема №2: Вечное «...connecting»</h2>
+<div class="card red">
+<p><b>Что происходит:</b> устройство «ADMISSION» (приёмная) пыталось получить адрес <b>12 часов подряд</b> — мы поймали это: оно стучалось в сеть снова и снова, а сервер молчал.</p>
+<p><b>Почему:</b> у устройства прописан постоянный адрес 10.120.10.48 в сети Админов, но сидит оно в сети E-Block. Сервер видит «паспорт от другой сети» и молча игнорирует. Ни отказа, ни разрешения. Устройство думает «сейчас подключусь...» — 12 часов.</p>
+<p><b>Лечится за 2 минуты:</b> перенести его адрес в правильную сеть. Не сделали — по правилам диагностики ничего не меняем без твоего согласия.</p>
+</div>
+
+<h2>🚨 Проблема №3: Почему 5 ГГц «валит» всю сеть</h2>
+<div class="card yellow">
+<p><b>Что происходит:</b> весь интернет школы (включая кабель!) проходит через два сервера-шлюза (Sophos) — виртуальные машины на одном физическом сервере. Свободной памяти у него — <b>274 МБ</b> (как одна фотография). Шлюзы заняли 88-91% своей памяти.</p>
+<p><b>5 ГГц удваивает число устройств и соединений</b> → шлюз «распухает» за 1-3 дня → зависает. А когда висит шлюз — умирает ВСЁ: и Wi-Fi, и кабель.</p>
+<p><b>Доказательство:</b> 25 августа шлюз №1 завис так, что не отвечал даже на команды выключения — администратор перезапускал вручную. Это в журнале сервера.</p>
+<p><b>Что делать:</b> сначала добавить памяти серверу (или разнести шлюзы по разным серверам), ПОТОМ аккуратно пробовать 5 ГГц — на 2-3 точках, 3 дня наблюдения.</p>
+</div>
+
+<h2>📋 Все находки одной таблицей</h2>
+<table>
+<tr><th>Находка</th><th>Серьёзность</th><th>Что делать</th></tr>
+<tr><td>Всё на 2.4 ГГц → затор в эфире</td><td>🟡 Главная причина «тормозит»</td><td>Добавить памяти → включать 5 ГГц поэтапно</td></tr>
+<tr><td>ADMISSION в лупе 12 часов</td><td>🔴 Причина «connecting»</td><td>Перенести адрес (2 минуты)</td></tr>
+<tr><td>Сервер шлюзов на пределе памяти</td><td>🔴 Риск полного падения</td><td>Добавить RAM / разнести шлюзы</td></tr>
+<tr><td>Открытая сеть «5G» на служебной сети</td><td>🟡 Дыра в безопасности</td><td>Поставить пароль</td></tr>
+<tr><td>Шлюзы пишут 7 ГБ логов в сутки</td><td>🟡 Лишняя нагрузка</td><td>Отключить лог обычного трафика</td></tr>
+<tr><td>Кабель в D-Block на 10 Мбит/с</td><td>🟡 Древний кабель</td><td>Заменить</td></tr>
+<tr><td>2 порта «мигают» 100+ раз</td><td>🟡 Плохой контакт</td><td>Переподключить кабели</td></tr>
+<tr><td>Мёртвые зоны (сигнал -84 dBm)</td><td>🟡 Слабое покрытие</td><td>Добавить точки доступа</td></tr>
+</table>
+
+<h2>🛠 План действий</h2>
+<div class="card blue">
+<p><b>Шаг 1 (сегодня, 2 мин):</b> починить ADMISSION — перенести адрес. Уйдут жалобы «connecting».</p>
+<p><b>Шаг 2 (сегодня, 5 мин):</b> отключить логирование обычного трафика на шлюзах.</p>
+<p><b>Шаг 3 (когда возможно):</b> добавить памяти серверу шлюзов ИЛИ перенести один шлюз на сервер .13.</p>
+<p><b>Шаг 4 (после шага 3):</b> включить 5 ГГц на 2-3 точках E-Block, наблюдать 3 дня.</p>
+<p><b>Шаг 5 (по мере сил):</b> пароль на «5G», замена кабелей, точки в мёртвых зонах.</p>
+</div>
+
+<p class="muted">Технический отчёт: /root/diagnostic_report_20260909.md · Аудит портов: /root/all_ports_report_20260909.txt · Диагностика в режиме «только чтение» — ничего не изменено.</p>
+
+</div>
+</body>
+</html>
