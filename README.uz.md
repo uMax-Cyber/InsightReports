@@ -4,13 +4,22 @@
 
 </div>
 
-# InsightReports — Hisobot Shabloni
+# InsightReports — Тёмные отчёты с анимациями
 
-HTML hisobot shabloni: inline SVG animatsiyalar, «oldin/keyin» vizualizatsiya.
+Qorong'u tema hisobot shabloni: SVG animatsiyalar, «oldin/keyin» vizualizatsiya.
 
 ## Skrinshot
 
 ![Namoyish](screenshots/demo.svg)
 
-## Litsenziya
-MIT
+## 📬 Aloqa
+
+Savollar bormi? Yozing: **[allumaxmail@gmail.com](mailto:allumaxmail@gmail.com)**
+
+---
+
+<div align="center">
+
+**🇬🇧 [English](README.md) · 🇷🇺 [Русский](README.ru.md) · 🇺🇿 [Oʻzbekcha](README.uz.md)**
+
+</div>
